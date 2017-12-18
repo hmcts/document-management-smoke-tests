@@ -1,0 +1,53 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'idea'
+    id 'org.springframework.boot' version '1.5.7.RELEASE'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    jcenter()
+}
+
+bootRepackage.enabled = false
+
+dependencies {
+    // Groovy
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    // Spring
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    runtime 'org.springframework.boot:spring-boot-devtools'
+
+    // Spock
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
+    testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4-rc-3'
+    testRuntime 'cglib:cglib-nodep:3.2.4'
+
+    //testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
+
+    testCompile "junit:junit:4.12"
+    testCompile "com.github.stephenc.jcip:jcip-annotations:1.0-1"
+    compile "com.google.guava:guava:21.0"
+    compile "org.hamcrest:hamcrest-core"
+    testCompile "io.rest-assured:rest-assured:3.0.5"
+    testCompile "com.fasterxml.jackson.core:jackson-databind"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    compile "org.springframework.boot:spring-boot-starter-logging"
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+task {
+    systemProperties System.getProperties()
+}

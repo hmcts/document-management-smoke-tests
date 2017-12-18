@@ -1,0 +1,25 @@
+---
+version: '2.1'
+
+services:
+  document-management-store-smoke-tests:
+    build:
+      context: .
+#    image: docker.artifactory.reform.hmcts.net/evidence/smoke-tests
+    environment:
+      - DM_GW_BASE_URI=http://document-management-store-api-gateway-web:8080
+      - DM_STORE_BASE_URI=http://document-management-store:8080
+      - IDAM_USER_BASE_URI=http://idam-api:8080
+      - IDAM_S2S_BASE_URI=http://service-auth-provider-api:8080
+      - TEST_USERNAME=test@TEST.COM
+      - TEST_PASSWORD=123
+    links:
+      - document-management-store-api-gateway-web
+      - document-management-store
+      - idam-api
+      - service-auth-provider-api
+    depends_on:
+      - document-management-store-api-gateway-web
+      - document-management-store
+      - idam-api
+      - service-auth-provider-api
