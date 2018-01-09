@@ -4,3 +4,4 @@ base-urls.idam-user=${IDAM_USER_BASE_URI:http://localhost:8081}
 
 login.username=${TEST_USERNAME:test@test.com}
 login.password=${TEST_PASSWORD:password}
+login.token=${TEST_TOKEN:token}
