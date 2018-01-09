@@ -11,7 +11,7 @@ services:
       - DM_STORE_BASE_URI=http://document-management-store:8080
       - IDAM_USER_BASE_URI=http://idam-api:8080
       - IDAM_S2S_BASE_URI=http://service-auth-provider-api:8080
-      - TEST_USERNAME=test@TEST.COM
+      - TEST_USERNAME=test@test.com
       - TEST_PASSWORD=123
     links:
       - document-management-store-api-gateway-web

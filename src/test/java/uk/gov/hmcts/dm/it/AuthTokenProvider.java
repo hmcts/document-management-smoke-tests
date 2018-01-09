@@ -29,9 +29,10 @@ public class AuthTokenProvider {
         this.idamUserBaseUrl = idamUserBaseUri;
         this.username = username;
         this.password= password;
-        this.token= token;
+        this.token = token;
         System.out.println("IDAM User URL - " + idamUserBaseUri);
         System.out.println("IDAM S2S URL - " + idamS2SBaseUri);
+        System.out.println("JWT token - " + token);
     }
 
     public AuthTokens getTokens() {

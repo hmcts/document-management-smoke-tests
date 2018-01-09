@@ -15,14 +15,14 @@ wait for dm app to spin up
 wget --retry-connrefused --tries=120 --waitretry=1 -O /dev/null ${DM_STORE_BASE_URI}/health
 
 #create user
-$(./idam-create-user.sh ${TEST_USERNAME} ${TEST_PASSWORD} ${IDAM_USER_BASE_URI})
+$(./idam-create-user.bat ${TEST_USERNAME} ${TEST_PASSWORD} ${IDAM_USER_BASE_URI})
 
 #get user token
-export TEST_TOKEN=$(./idam-get-token.sh ${TEST_USERNAME} ${TEST_PASSWORD} ${IDAM_USER_BASE_URI})
+export TEST_TOKEN=$(./idam-get-token.bat ${TEST_USERNAME} ${TEST_PASSWORD} ${IDAM_USER_BASE_URI})
 
 echo ${TEST_TOKEN}
 
-./gradlew clean test --info;
+./gradlew.bat clean test --info;
 
 #docker-compose -f docker-compose.yml -f docker-compose-test.yml run -e GRADLE_OPTS document-management-store-smoke-tests
 
@@ -30,4 +30,3 @@ sensible-browser ./build/reports/tests/test/index.html
 open ./build/reports/tests/test/index.html
 
 docker-compose down
-

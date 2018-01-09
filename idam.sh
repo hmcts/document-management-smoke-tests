@@ -4,6 +4,3 @@ echo $(curl -s -H 'Content-Type: application/json' -d '{ "email":"test@TEST.COM"
 clear;
 echo "Authorization:Bearer "$(curl -s -X POST -H 'Authorization: Basic dGVzdEBURVNULkNPTToxMjM=' http://localhost:8081/oauth2/authorize | jq -r '."access-token"')
 echo "classification:PRIVATE"
-
-
-
