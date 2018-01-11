@@ -1,6 +1,7 @@
 package uk.gov.hmcts.dm.it
 
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.test.context.junit4.SpringRunner
@@ -117,6 +118,7 @@ class ReadDocumentIT extends BaseIT {
 
     }
 
+    @Ignore ("This is not considered as a smoke test")
     @Test
     void "R10 As unauthenticated user GET document that exists with jwt parameter appended to the document URL"() {
 
@@ -145,6 +147,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
 
+    @Ignore ("This is not considered as a smoke test")
     @Test
     void "R11 As unauthenticated user GET document that does not exists with jwt parameter appended to the document URL"() {
 
