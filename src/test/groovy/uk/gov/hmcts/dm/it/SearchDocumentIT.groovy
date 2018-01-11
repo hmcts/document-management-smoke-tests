@@ -53,7 +53,7 @@ class SearchDocumentIT extends BaseIT {
 
     @Test
     void "S3 As unauthenticated user I am forbidden to invoke search"() {
-        givenRequest()
+        givenUnauthenticatedUsersRequest()
             .contentType(ContentType.JSON)
             .body(JsonOutput.toJson([name:'case', value:'123']))
         .expect()

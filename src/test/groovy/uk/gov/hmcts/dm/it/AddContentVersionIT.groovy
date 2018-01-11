@@ -53,7 +53,7 @@ class AddContentVersionIT extends BaseIT {
     @Test
     void "ACV3 As unauthenticated user POST a new version of the content to a not existing document"() {
 
-        givenRequest()
+        givenUnauthenticatedUsersRequest()
             .multiPart("file", file(ATTACHMENT_1), MediaType.TEXT_PLAIN_VALUE)
             .expect()
                 .statusCode(401)
@@ -67,7 +67,7 @@ class AddContentVersionIT extends BaseIT {
 
         def url = createDocumentAndGetUrlAs()
 
-        givenRequest()
+        givenUnauthenticatedUsersRequest()
             .multiPart("file", file(ATTACHMENT_1), MediaType.TEXT_PLAIN_VALUE)
             .expect()
                 .statusCode(401)
@@ -77,53 +77,7 @@ class AddContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "ACV5 As authenticated user who is an not an owner POST a new version of the content to an existing document"() {
-
-        def url = createDocumentAndGetUrlAs()
-
-
-
-        givenRequest()
-            .multiPart("file", file(ATTACHMENT_1), MediaType.TEXT_PLAIN_VALUE)
-            .expect()
-                .statusCode(403)
-            .when()
-                .post(url)
-
-    }
-
-    @Test
-    void "ACV6 As authenticated user who is not an owner and is a case worker"() {
-
-        def url = createDocumentAndGetUrlAs()
-
-        createCaseWorker
-
-        givenRequest()
-            .multiPart("file", file(ATTACHMENT_1), MediaType.TEXT_PLAIN_VALUE)
-            .expect()
-                .statusCode(403)
-            .when()
-                .post(url)
-
-    }
-
-    @Test
-    void "ACV7 As authenticated user who is a case worker POST a new version of the content to a not existing document and expect 404"() {
-
-        createCaseWorker
-
-        givenRequest()
-            .multiPart("file", file(ATTACHMENT_1), MediaType.TEXT_PLAIN_VALUE)
-            .expect()
-                .statusCode(404)
-            .when()
-                .post("documents/${UUID.randomUUID()}")
-
-    }
-
-    @Test
-    void "ACV8 As an authenticated user and the owner I should not be able to upload multiple new content versions then expect 201"() {
+    void "ACV5 As an authenticated user and the owner I should not be able to upload multiple new content versions then expect 201"() {
 
         def documentURL = createDocumentAndGetUrlAs()
         def response = givenRequest()
@@ -150,7 +104,7 @@ class AddContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "ACV9 As an authenticated user and the owner I should be able to upload new version of different format"() {
+    void "ACV6 As an authenticated user and the owner I should be able to upload new version of different format"() {
 
         def documentURL = createDocumentAndGetUrlAs()
         def response = givenRequest()
@@ -175,7 +129,7 @@ class AddContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "ACV10 As an authenticated user and the owner I should not be able to upload exes"() {
+    void "ACV7 As an authenticated user and the owner I should not be able to upload exes"() {
 
         def documentURL = createDocumentAndGetUrlAs()
         givenRequest()
@@ -187,7 +141,7 @@ class AddContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "ACV11 As an authenticated user and the owner I should not be able to upload zip"() {
+    void "ACV8 As an authenticated user and the owner I should not be able to upload zip"() {
 
         def documentURL = createDocumentAndGetUrlAs()
         givenRequest()

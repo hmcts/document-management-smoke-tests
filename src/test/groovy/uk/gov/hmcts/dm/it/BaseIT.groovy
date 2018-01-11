@@ -75,6 +75,12 @@ class BaseIT {
         request
     }
 
+    def givenUnauthenticatedUsersRequest() {
+        def request = given().log().all()
+        request = request.header("Authorization", "")
+        request
+    }
+
     def file(fileName) {
         fileUtils.getResourceFile(FILES_FOLDER + fileName)
     }

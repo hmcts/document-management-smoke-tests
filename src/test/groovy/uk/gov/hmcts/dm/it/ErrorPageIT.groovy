@@ -24,7 +24,7 @@ class ErrorPageIT extends BaseIT {
 
         def documentUrl = createDocumentAndGetUrlAs()
 
-        givenRequest()
+        givenUnauthenticatedUsersRequest()
                 .accept(ContentType.HTML)
                 .expect()
                     .contentType(ContentType.HTML)
@@ -83,23 +83,6 @@ class ErrorPageIT extends BaseIT {
                 .statusCode(422)
                 .when()
                 .post('documents/')
-    }
-
-    @Test
-    void "EP6 As an authenticated web user but not the owner of the file, post the newer version of the file, receive HTML error page with 403"() {
-
-        def url = createDocumentAndGetUrlAs()
-
-
-
-        givenRequest()
-                .accept(ContentType.HTML)
-                .multiPart("file", file(ATTACHMENT_1), MediaType.TEXT_PLAIN_VALUE)
-                .expect()
-                .body("html.head.title", equalTo("403 Error"))
-                .statusCode(403)
-                .when()
-                .post(url)
     }
 
 }

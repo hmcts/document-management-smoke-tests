@@ -16,28 +16,24 @@ public class AuthTokenProvider {
     private final String idamUserBaseUrl;
     private final String username;
     private final String password;
-    private final String token;
 
     @Autowired
     public AuthTokenProvider(@Value("${base-urls.idam-s2s}") String idamS2SBaseUri,
                              @Value("${base-urls.idam-user}") String idamUserBaseUri,
                              @Value("${login.username}")String username,
-                             @Value("${login.password}")String password,
-                             @Value("${login.token}")String token
+                             @Value("${login.password}")String password
     ) {
 //        this.idamS2SBaseUri = idamS2SBaseUri;
         this.idamUserBaseUrl = idamUserBaseUri;
         this.username = username;
         this.password= password;
-        this.token = token;
         System.out.println("IDAM User URL - " + idamUserBaseUri);
         System.out.println("IDAM S2S URL - " + idamS2SBaseUri);
-        System.out.println("JWT token - " + token);
     }
 
     public AuthTokens getTokens() {
-//        String userToken = findUserToken(username, password);
-        return new AuthTokens(token, "");
+        String userToken = findUserToken(username, password);
+        return new AuthTokens(userToken, "");
     }
 
 //    private String findServiceToken() {

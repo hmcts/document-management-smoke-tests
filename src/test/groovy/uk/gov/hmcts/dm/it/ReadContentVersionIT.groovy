@@ -58,27 +58,7 @@ class ReadContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "RCV3 As not owner and not a case worker I read content version by URL but I am denied access"() {
-        givenRequest()
-            .expect()
-                .statusCode(403)
-            .when()
-                .get(documentVersionUrl)
-
-    }
-
-    @Test
-    void "RCV4 As not owner and not a case worker I read content version binary by URL but I am denied access"() {
-        givenRequest()
-                .expect()
-                .statusCode(403)
-                .when()
-                .get(documentVersionBinaryUrl)
-
-    }
-
-    @Test
-    void "RCV5 As a case worker I read content version by URL"() {
+    void "RCV3 As a case worker I read content version by URL"() {
         givenRequest()
                 .expect()
                 .statusCode(200)
@@ -88,7 +68,7 @@ class ReadContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "RCV6 As a probate case-worker I read content version binary by URL"() {
+    void "RCV4 As a probate case-worker I read content version binary by URL"() {
         givenRequest()
                 .expect()
                 .statusCode(200)
@@ -98,7 +78,7 @@ class ReadContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "RCV7 As a cmc case-worker I can read content version binary by URL"() {
+    void "RCV5 As a cmc case-worker I can read content version binary by URL"() {
         givenRequest()
                 .expect()
                 .statusCode(200)
@@ -108,7 +88,7 @@ class ReadContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "RCV8 As a sscs case-worker I can read content version binary by URL"() {
+    void "RCV6 As a sscs case-worker I can read content version binary by URL"() {
         givenRequest()
                 .expect()
                 .statusCode(200)
@@ -118,7 +98,7 @@ class ReadContentVersionIT extends BaseIT {
     }
 
     @Test
-    void "RCV9 As a divorce case-worker I can read content version binary by URL"() {
+    void "RCV7 As a divorce case-worker I can read content version binary by URL"() {
         givenRequest()
                 .expect()
                 .statusCode(200)
