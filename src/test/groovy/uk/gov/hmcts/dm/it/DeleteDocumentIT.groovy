@@ -19,12 +19,6 @@ class DeleteDocumentIT extends BaseIT {
         def documentUrl1 = createDocumentAndGetUrlAs()
 
         givenRequest()
-                .expect()
-                .statusCode(401)
-                .when()
-                .delete(documentUrl)
-
-        givenRequest()
             .expect()
                 .statusCode(405)
             .when()

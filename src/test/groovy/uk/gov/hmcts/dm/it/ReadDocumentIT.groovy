@@ -43,7 +43,7 @@ class ReadDocumentIT extends BaseIT {
 
         def documentUrl = createDocumentAndGetUrlAs()
 
-        givenRequest()
+        givenUnauthenticatedUsersRequest()
             .expect()
                 .statusCode(401)
             .when()
@@ -55,7 +55,7 @@ class ReadDocumentIT extends BaseIT {
     @Test
     void "R4 As unauthenticated user GET existing document and receive 401"() {
 
-        givenRequest()
+        givenUnauthenticatedUsersRequest()
             .expect()
                 .statusCode(401)
             .when()
@@ -64,33 +64,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R5 As authenticated user who is not an owner and not a case worker I can't access a document"() {
-        def documentUrl = createDocumentAndGetUrlAs()
-
-        givenRequest()
-            .expect()
-                .statusCode(403)
-            .when()
-                .get(documentUrl)
-
-    }
-
-
-    @Test
-    void "R6 As authenticated user who is not an owner and not a case worker GET existing document binary and see 403"() {
-
-        def binaryUrl = createDocumentAndGetBinaryUrlAs()
-
-        givenRequest()
-            .expect()
-                .statusCode(403)
-            .when()
-                .get(binaryUrl)
-
-    }
-
-    @Test
-    void "R7 As authenticated user who is not an owner and is a case worker I can read not owned documents"() {
+    void "R5 As authenticated user who is not an owner and is a case worker I can read not owned documents"() {
 
         def documentUrl = createDocumentAndGetUrlAs()
 
@@ -103,7 +77,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R8 As authenticated user GET document/xxx where xxx is not UUID"() {
+    void "R6 As authenticated user GET document/xxx where xxx is not UUID"() {
 
         givenRequest()
             .expect()
@@ -113,7 +87,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R9 As authenticated user GET document/111 where 111 is not UUID"() {
+    void "R7 As authenticated user GET document/111 where 111 is not UUID"() {
 
         givenRequest()
                 .expect()
@@ -123,7 +97,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R10 As authenticated user GET document/ where 111 is not UUID"() {
+    void "R8 As authenticated user GET document/ where 111 is not UUID"() {
 
         givenRequest()
                 .expect()
@@ -133,7 +107,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R11 As authenticated user GET document/xxx where xxx is UUID but it doesn't exist in our BD"() {
+    void "R9 As authenticated user GET document/xxx where xxx is UUID but it doesn't exist in our BD"() {
 
         givenRequest()
             .expect()
@@ -144,7 +118,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R12 As unauthenticated user GET document that exists with jwt parameter appended to the document URL"() {
+    void "R10 As unauthenticated user GET document that exists with jwt parameter appended to the document URL"() {
 
         def documentUrl = createDocumentAndGetUrlAs()
 
@@ -172,7 +146,7 @@ class ReadDocumentIT extends BaseIT {
 
 
     @Test
-    void "R13 As unauthenticated user GET document that does not exists with jwt parameter appended to the document URL"() {
+    void "R11 As unauthenticated user GET document that does not exists with jwt parameter appended to the document URL"() {
 
         def jwt = authToken()
 
@@ -197,7 +171,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R14 As authenticated user with a specific role I can access a document if its CLASSIFICATION is restricted and roles match"() {
+    void "R12 As authenticated user with a specific role I can access a document if its CLASSIFICATION is restricted and roles match"() {
 
         def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'RESTRICTED', ['caseworker']
 
@@ -210,20 +184,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R15 As authenticated user with a specific role I can't access a document if its CLASSIFICATION is PRIVATE and roles match"() {
-
-        def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PRIVATE', ['caseworker']
-
-        givenRequest()
-                .expect()
-                .statusCode(403)
-                .when()
-                .get(documentUrl)
-
-    }
-
-    @Test
-    void "R16 As authenticated user with a specific role I can access a document if its CLASSIFICATION is public and roles match"() {
+    void "R13 As authenticated user with a specific role I can access a document if its CLASSIFICATION is public and roles match"() {
 
         def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PUBLIC', ['caseworker']
 
@@ -236,7 +197,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R17 As authenticated user with a specific role I can access a document if its CLASSIFICATION is public and matches role"() {
+    void "R14 As authenticated user with a specific role I can access a document if its CLASSIFICATION is public and matches role"() {
 
         def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PUBLIC', ['citizen', 'caseworker']
 
@@ -248,32 +209,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R18 As authenticated user with no role I cannot access a document if its CLASSIFICATION is public with no role"() {
-
-        def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PUBLIC', [null]
-
-        givenRequest()
-            .expect()
-            .statusCode(403)
-            .when()
-            .get(documentUrl)
-    }
-
-    @Test
-    void "R19 As authenticated user with some role I can access a document if its CLASSIFICATION is public and roles does not match"() {
-
-        def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PUBLIC', [null]
-
-        givenRequest()
-            .expect()
-            .statusCode(403)
-            .when()
-            .get(documentUrl)
-
-    }
-
-    @Test
-    void "R20 As authenticated user with no role (Tests by default sets role as citizen) I can access a document if its CLASSIFICATION is public and roles is citizen"() {
+    void "R15 As authenticated user with no role (Tests by default sets role as citizen) I can access a document if its CLASSIFICATION is public and roles is citizen"() {
 
         def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PUBLIC', ['citizen']
 
@@ -285,7 +221,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R21 As an owner I can access a document even if its CLASSIFICATION is private with no roles"() {
+    void "R16 As an owner I can access a document even if its CLASSIFICATION is private with no roles"() {
 
         def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PRIVATE', [null]
 
@@ -297,19 +233,7 @@ class ReadDocumentIT extends BaseIT {
     }
 
     @Test
-    void "R22 As authenticated user with a specific role I can't access a document if its CLASSIFICATION is restricted and roles don't match"() {
-
-        def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'RESTRICTED', ['caseworker']
-
-        givenRequest()
-                .expect()
-                .statusCode(403)
-                .when()
-                .get(documentUrl)
-    }
-
-    @Test
-    void "R23 As an Owner with no role I can access a document even if its CLASSIFICATION is private and role as caseworker"() {
+    void "R17 As an Owner with no role I can access a document even if its CLASSIFICATION is private and role as caseworker"() {
 
         def documentUrl = createDocumentAndGetUrlAs ATTACHMENT_1, 'PRIVATE', ['caseworker']
 

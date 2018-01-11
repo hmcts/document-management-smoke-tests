@@ -141,7 +141,7 @@ class CreateDocumentIT extends BaseIT {
 
     @Test
     void "CD2 As unauthenticated user I fail (401) to upload files"() {
-        givenRequest()
+        givenUnauthenticatedUsersRequest()
             .multiPart("files", file(ATTACHMENT_1), MediaType.TEXT_PLAIN_VALUE)
             .multiPart("files", file(ATTACHMENT_2), MediaType.TEXT_PLAIN_VALUE)
             .multiPart("classification", Classifications.PUBLIC as String)
