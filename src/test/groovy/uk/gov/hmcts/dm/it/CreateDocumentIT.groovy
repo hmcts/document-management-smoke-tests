@@ -248,7 +248,7 @@ class CreateDocumentIT extends BaseIT {
 
     @Test
     void "CD9 As authenticated user I cannot upload xml file"() {
-        givenRequest(CITIZEN)
+        givenRequest()
             .multiPart("files", file(ATTACHMENT_18), MediaType.APPLICATION_XML_VALUE)
             .multiPart("classification", Classifications.PUBLIC as String)
             .multiPart("roles", "caseworker")
@@ -261,7 +261,7 @@ class CreateDocumentIT extends BaseIT {
 
     @Test
     void "CD10 As authenticated user I cannot upload svg file"() {
-        givenRequest(CITIZEN)
+        givenRequest()
             .multiPart("files", file(ATTACHMENT_10), V1MimeTypes.IMAGE_SVG_VALUE)
             .multiPart("classification", Classifications.PUBLIC as String)
             .multiPart("roles", "caseworker")
