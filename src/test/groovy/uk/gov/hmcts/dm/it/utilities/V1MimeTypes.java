@@ -19,6 +19,9 @@ public class V1MimeTypes extends MediaType implements Serializable {
     public final static MediaType IMAGE_TIF;
     public final static String IMAGE_TIF_VALUE = "image/tiff";
 
+    public final static MediaType IMAGE_BMP;
+    public final static String IMAGE_BMP_VALUE = "image/bmp";
+
     public final static MediaType IMAGE_SVG;
     public final static String IMAGE_SVG_VALUE = "image/svg+xml";
 
@@ -83,6 +86,7 @@ public class V1MimeTypes extends MediaType implements Serializable {
         APPLICATION_RTF = valueOf(APPLICATION_RTF_VALUE);
         IMAGE_TIF = valueOf(IMAGE_TIF_VALUE);
         IMAGE_SVG = valueOf(IMAGE_SVG_VALUE);
+        IMAGE_BMP = valueOf(IMAGE_BMP_VALUE);
         APPLICATION_PPT = valueOf(APPLICATION_PPT_VALUE);
         APPLICATION_XLS = valueOf(APPLICATION_XLS_VALUE);
         APPLICATION_ODT = valueOf(APPLICATION_ODT_VALUE);
