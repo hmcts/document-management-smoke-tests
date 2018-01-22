@@ -18,8 +18,8 @@ RUN mkdir -p tests
 WORKDIR /tests
 COPY . .
 
-ENV http_proxy ""
-ENV https_proxy ""
-ENV no_proxy ""
+RUN unset http_proxy
+RUN unset https_proxy
+RUN unset no_proxy
 
 ENTRYPOINT ./smokeTest.sh
