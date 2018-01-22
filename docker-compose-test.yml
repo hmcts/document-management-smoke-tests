@@ -5,6 +5,10 @@ services:
   document-management-store-smoke-tests:
     build:
       context: .
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
 #    image: docker.artifactory.reform.hmcts.net/evidence/smoke-tests
     environment:
       - DM_GW_BASE_URI=http://document-management-store-api-gateway-web:8080

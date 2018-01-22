@@ -32,7 +32,7 @@ node {
             }
 
             stage('Run Smoke tests in docker') {
-                sh "docker-compose -f docker-compose.yml -f docker-compose-test.yml run -e GRADLE_OPTS document-management-store-smoke-tests"
+                sh "docker-compose -f docker-compose.yml -f docker-compose-test.yml run -e GRADLE_OPTS -e http_proxy -e https_proxy -e no_proxy document-management-store-smoke-tests"
             }
         }
         catch (e){
