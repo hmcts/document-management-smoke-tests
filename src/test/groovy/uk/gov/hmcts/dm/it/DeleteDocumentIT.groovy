@@ -1,6 +1,5 @@
 package uk.gov.hmcts.dm.it
 
-import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.test.context.junit4.SpringRunner
@@ -20,25 +19,25 @@ class DeleteDocumentIT extends BaseIT {
 
         givenRequest()
             .expect()
-                .statusCode(405)
+                .statusCode(204)
             .when()
                 .delete(documentUrl)
 
         givenRequest()
                 .expect()
-                .statusCode(405)
+                .statusCode(204)
                 .when()
                 .delete(documentUrl)
 
         givenRequest()
                 .expect()
-                .statusCode(405)
+                .statusCode(204)
                 .when()
                 .delete(documentUrl)
 
         givenRequest()
                 .expect()
-                .statusCode(405)
+                .statusCode(204)
                 .when()
                 .delete(documentUrl1)
 

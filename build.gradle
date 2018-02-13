@@ -14,31 +14,31 @@ repositories {
 
 bootRepackage.enabled = false
 
+def springBootVersion = plugins.getPlugin('org.springframework.boot').class.package.implementationVersion
+
+def versions = [
+    springBoot         : springBootVersion,
+]
+
 dependencies {
-    // Groovy
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile group: 'com.google.guava', name :'guava', version:'21.0'
 
-    // Spring
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-jetty'
-    runtime 'org.springframework.boot:spring-boot-devtools'
+    compile group: 'org.codehaus.groovy', name :'groovy-all', version:'2.4.7'
+    compile group: 'org.hamcrest', name :'hamcrest-core'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: versions.springBoot
+    compile group: 'org.springframework.boot', name :'spring-boot-starter-jetty', version: versions.springBoot
+    compile group: 'org.springframework.boot', name :'spring-boot-starter-logging', version: versions.springBoot
 
-    // Spock
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4-rc-3'
-    testCompile 'org.spockframework:spock-spring:1.1-groovy-2.4-rc-3'
-    testRuntime 'cglib:cglib-nodep:3.2.4'
+    runtime group: 'org.springframework.boot', name :'spring-boot-devtools', version: versions.springBoot
 
-    //testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
-
-    testCompile "junit:junit:4.12"
-    testCompile "com.github.stephenc.jcip:jcip-annotations:1.0-1"
-    compile "com.google.guava:guava:21.0"
-    compile "org.hamcrest:hamcrest-core"
-    testCompile "io.rest-assured:rest-assured:3.0.5"
-    testCompile "com.fasterxml.jackson.core:jackson-databind"
-    testCompile "org.springframework.boot:spring-boot-starter-test"
-    compile "org.springframework.boot:spring-boot-starter-logging"
+    testRuntime group: 'cglib', name :'cglib-nodep', version:'3.2.4'
+    testCompile group: 'com.github.stephenc.jcip', name :'jcip-annotations', version:'1.0-1'
+    testCompile group: 'com.fasterxml.jackson.core', name :'jackson-databind'
+    testCompile group: 'io.rest-assured', name :'rest-assured', version:'3.0.5'
+    testCompile group: 'junit', name :'junit', version:'4.12'
+    testCompile group: 'org.springframework.boot', name :'spring-boot-starter-test', version: versions.springBoot
+    testCompile group: 'org.spockframework', name :'spock-core', version:'1.1-groovy-2.4'
+    testCompile group: 'org.spockframework', name :'spock-spring', version:'1.1-groovy-2.4'
 }
 
 idea {
