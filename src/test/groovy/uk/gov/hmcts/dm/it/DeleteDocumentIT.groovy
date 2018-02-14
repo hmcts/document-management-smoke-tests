@@ -1,5 +1,6 @@
 package uk.gov.hmcts.dm.it
 
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.test.context.junit4.SpringRunner
@@ -8,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner
  * Created by pawel on 13/10/2017.
  */
 @RunWith(SpringRunner.class)
+@Ignore("Not in release R1.1.0")
 class DeleteDocumentIT extends BaseIT {
 
     @Test
