@@ -43,14 +43,14 @@ class MappingUrlIT extends BaseIT {
 
         assertTrue((null != request["{[/documents],methods=[POST],consumes=[multipart/form-data]}"]))
 
-        assertTrue((null != request["{[/documents/{id}],methods=[GET]}"]))
-        assertTrue((null != request["{[/documents/{id}/binary],methods=[GET]}"]))
+        assertTrue((null != request["{[/documents/{documentId}],methods=[GET]}"]))
+        assertTrue((null != request["{[/documents/{documentId}/binary],methods=[GET]}"]))
 
         assertTrue((null != request["{[/documents/{documentId}],methods=[POST],consumes=[multipart/form-data]}"]))
         assertTrue((null != request["{[/documents/{documentId}/versions/{versionId}],methods=[GET]}"]))
         assertTrue((null != request["{[/documents/{documentId}/versions/{versionId}/binary],methods=[GET]}"]))
 
-        assertTrue((null != request["{[/documents/{id}/auditEntries],methods=[GET]}"]))
+        assertTrue((null != request["{[/documents/{documentId}/auditEntries],methods=[GET]}"]))
     }
 
     @Test
@@ -78,17 +78,17 @@ class MappingUrlIT extends BaseIT {
 
     @Test
     void "toggle.deleteenabled toggle Mappings"() {
-        assertTrue(deleteenabled == (null != request["{[/documents/{id}],methods=[DELETE]}"]))
+        assertTrue(deleteenabled == (null != request["{[/documents/{documentId}],methods=[DELETE]}"]))
     }
 
     @Test
     void "toggle.ttl toggle Mappings"() {
-        assertTrue(ttl == (null != request["{[/documents/{id}],methods=[PATCH],consumes=[application/json]}"]))
+        assertTrue(ttl == (null != request["{[/documents/{documentId}],methods=[PATCH],consumes=[application/json]}"]))
     }
 
     @Test
     void "toggle.thumbnail toggle Mappings"() {
-        assertTrue(thumbnail == (null != request["{[/documents/{id}/thumbnail],methods=[GET]}"]))
+        assertTrue(thumbnail == (null != request["{[/documents/{documentId}/thumbnail],methods=[GET]}"]))
         assertTrue(thumbnail == (null != request["{[/documents/{documentId}/versions/{versionId}/thumbnail],methods=[GET]}"]))
     }
 
